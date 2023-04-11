@@ -1,0 +1,43 @@
+@startuml
+abstract class Pessoa {
+    -nome: String
+}
+
+class Farmaceutico {}
+
+class Paciente {
+    -cpf: String
+    -numSUS: String
+    -email: Date
+    -dataNasc: Date
+    -preferencial: boolean
+}
+
+class HistoricoAtendimento {
+    -receitamedica: BufferedImage
+}
+
+class Remedio{
+   -nomeRemedio: String
+}
+
+class Atendimento{}
+
+class Agenda {
+    -dataHora: DateTime
+    -limite: int
+}
+
+class Notificacao {
+    -mensagem: String
+}
+
+Pessoa <|-- Farmaceutico
+Pessoa <|-- Paciente
+Atendimento "0" <-- "1" Agenda : acessa a >
+Paciente "1..*" --> "1..*" Atendimento : marca o >
+Paciente "1" --> "0..*" Notificacao : recebe >
+Farmaceutico "1..*" --> "1..*" HistoricoAtendimento : registra no >
+Remedio "1..*" --> "0" HistoricoAtendimento : registra no >
+HistoricoAtendimento "1" <-- "0" Atendimento : registra no <
+@enduml
