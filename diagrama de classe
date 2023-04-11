@@ -34,10 +34,22 @@ class Notificacao {
 
 Pessoa <|-- Farmaceutico
 Pessoa <|-- Paciente
-Atendimento "0" <-- "1" Agenda : acessa a >
-Paciente "1..*" --> "1..*" Atendimento : marca o >
-Paciente "1" --> "0..*" Notificacao : recebe >
-Farmaceutico "1..*" --> "1..*" HistoricoAtendimento : registra no >
-Remedio "1..*" --> "0" HistoricoAtendimento : registra no >
-HistoricoAtendimento "1" <-- "0" Atendimento : registra no <
+
+Paciente "1..*" --> "1..*" Atendimento : marca >
+
+Paciente "0..1" --> "1..*" Notificacao : recebe >
+
+Farmaceutico "1" --> "1..*" Remedio : registra o medicamento >
+
+Farmaceutico "1..*" --> "1..*" Atendimento : marca >
+
+Farmaceutico "1..*" --> "1..*" HistoricoAtendimento : registra >
+
+Remedio "1" --> "1..*" HistoricoAtendimento :  registrado no >
+
+Atendimento "1" --> "1..*" HistoricoAtendimento : registrado no >
+
+Agenda "1..*" --> "1..*" Atendimento : utiliza a data e o horário disponibilizado >
+
+
 @enduml
