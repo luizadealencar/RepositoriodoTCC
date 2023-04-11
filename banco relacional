@@ -1,58 +1,53 @@
 @startuml
 entity Pessoa {
-    +id: int (PK)
-    +nome: string
+    -nome: String
 }
 
 entity Farmaceutico {
-    +id: int (PK)
-    #historico: int (FK)
-    #agendaId: int (FK)
+    -nome: String
 }
 
 entity Paciente {
-    +id: int (PK)
-    +cpf: string
-    +dataNasc: date
-    +preferencial: boolean
+    -cpf: String
+    -numSUS: String
+    -email: Date
+    -dataNasc: Date
+    -preferencial: boolean
 }
 
-entity HistoricoPaciente {
-    +id: int (PK)
-    +registroRetirada: datetime
-    +remedio: string
-    +exame: blob
-    +documento: blob
-    +receitaMedica: blob
-    +pacienteId: int (FK)
+entity HistoricoAtendimento {
+    -receitamedica: BufferedImage
 }
 
-entity Agenda {
-    +id: int (PK)
-    +dataHora: datetime
-    +pacienteId: int (FK)
-}
-
-entity Notificacao {
-    +id: int (PK)
-    +mensagem: string
-    +pacienteId: int (FK)
+entity Remedio{
+   -nomeRemedio: String
 }
 
 entity Atendimento {
-    +id: int (PK)
-    +agendaId: int (FK)
-    +farmaceuticoId: int (FK)
-    +pacienteId: int (FK)
+    -dataHora: DateTime
 }
 
-Pessoa }|--|{ Paciente
-Pessoa }|--|{ Farmaceutico
-Paciente ||--|{ Agenda
-Farmaceutico ||--|{ Agenda
-Paciente ||--|{ HistoricoPaciente
-Paciente }o--o{ Notificacao
-Farmaceutico }|--|{ HistoricoPaciente
-Atendimento }|--|{ Farmaceutico
-Atendimento }|--|{ Paciente
+entity Agenda {
+    -dataHora: DateTime
+    -limite: int
+}
+
+entity Notificacao {
+    -mensagem: String
+}
+
+Pessoa ||--|{ Farmaceutico
+Pessoa ||--|{ Paciente
+
+Paciente }|..|| Atendimento : marca
+Paciente }o..|| Notificacao : recebe
+
+Farmaceutico }|--|{ Remedio : registra o medicamento
+Farmaceutico }|..|| Atendimento : marca
+Farmaceutico }|..|| HistoricoAtendimento : registra
+
+Remedio }|--|{ HistoricoAtendimento : registrado no
+Atendimento }|--|{ HistoricoAtendimento : registrado no
+
+Agenda }o..|| Atendimento : utiliza a data e o horário disponibilizado
 @enduml
