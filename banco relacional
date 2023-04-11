@@ -1,0 +1,58 @@
+@startuml
+entity Pessoa {
+    +id: int (PK)
+    +nome: string
+}
+
+entity Farmaceutico {
+    +id: int (PK)
+    #historico: int (FK)
+    #agendaId: int (FK)
+}
+
+entity Paciente {
+    +id: int (PK)
+    +cpf: string
+    +dataNasc: date
+    +preferencial: boolean
+}
+
+entity HistoricoPaciente {
+    +id: int (PK)
+    +registroRetirada: datetime
+    +remedio: string
+    +exame: blob
+    +documento: blob
+    +receitaMedica: blob
+    +pacienteId: int (FK)
+}
+
+entity Agenda {
+    +id: int (PK)
+    +dataHora: datetime
+    +pacienteId: int (FK)
+}
+
+entity Notificacao {
+    +id: int (PK)
+    +mensagem: string
+    +pacienteId: int (FK)
+}
+
+entity Atendimento {
+    +id: int (PK)
+    +agendaId: int (FK)
+    +farmaceuticoId: int (FK)
+    +pacienteId: int (FK)
+}
+
+Pessoa }|--|{ Paciente
+Pessoa }|--|{ Farmaceutico
+Paciente ||--|{ Agenda
+Farmaceutico ||--|{ Agenda
+Paciente ||--|{ HistoricoPaciente
+Paciente }o--o{ Notificacao
+Farmaceutico }|--|{ HistoricoPaciente
+Atendimento }|--|{ Farmaceutico
+Atendimento }|--|{ Paciente
+@enduml
