@@ -1,0 +1,44 @@
+@startuml
+object Paciente {
+    -cpf = "123.456.789-00"
+    -numSUS = "1234567890"
+    -email = "paciente1@gmail.com"
+    -dataNasc = "01/01/1990"
+    -preferencial = false
+}
+
+object Atendimento {
+    -dataHora = "12/04/2023 14:00"
+    paciente = paciente1
+}
+
+object Farmaceutico {
+    -nome = "João"
+}
+
+object Remedio {
+    -nomeRemedio = "Aspirina"
+}
+
+object HistoricoAtendimento {
+    -receitaMedica = "imagem da receita"
+}
+
+object Notificacao {
+    -mensagem = "Lembrete de consulta"
+}
+
+object Agenda{
+    -dataHora = "12/04/2023 14:00"
+    -limite = 10
+}
+
+Paciente --> Atendimento 
+Farmaceutico --> Remedio 
+Farmaceutico --> Atendimento 
+Farmaceutico --> HistoricoAtendimento 
+Remedio --> HistoricoAtendimento 
+Atendimento --> HistoricoAtendimento 
+Paciente --> Notificacao
+Agenda --> Atendimento
+@enduml
