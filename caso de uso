@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+
+actor Paciente as p
+actor Farmaceutico as f
+
+usecase "Marcar na agenda" as uc1
+usecase "Registrar no histórico" as uc2
+usecase "Visualizar histórico" as uc3
+usecase "Receber notificação" as uc4
+usecase "Realizar atendimento" as uc5
+
+p --> uc1
+f --> uc1
+f --> uc2
+f --> uc3
+p --> uc3
+p --> uc4
+f --> uc5
+uc5 --> p : Recebe atendimento
+@enduml
