@@ -1,31 +1,31 @@
 @startuml
 left to right direction
 
-actor Paciente as p
-actor Farmacêutico as f
-usecase "Realizar atendimento" as uc5
+
 
 rectangle "Farmácia Cidadã Estadual" {
-  usecase "Marcar na agenda" as uc1
-  usecase "Registrar no histórico" as uc2
-  usecase "Visualizar histórico" as uc3
+actor Paciente as p
+actor Farmacêutico as f
+  usecase "Marcar horário na agenda" as uc1
+  usecase "Registrar Ficha do Paciente" as uc2
+  usecase "Visualizar Ficha do Paciente" as uc3
   usecase "Receber notificação" as uc4
-  usecase "Abrir processo" as uc6
-  usecase "Visualizar e responder ao processo" as uc7
-  usecase "Se cadastrar" as uc8
+  usecase "Abrir Abertura de Processo para Solicitação de Medicamentos" as uc6
+  usecase "Visualizar Abertura de Processo para Solicitação de Medicamentos" as uc7
+usecase "Responder Abertura de Processo para Solicitação de Medicamentos" as uc9
+  usecase "Realizar cadastrar" as uc8
 }
 
-f --> uc1
-p --> uc1
-f --> uc2
-f --> uc3
-p --> uc3
-p --> uc4
-p --> uc6
-f --> uc7
-f --> uc8
-p --> uc8
-f --> uc5
+f -- uc1
+p -- uc1
+f -- uc2
+f -- uc3
+p -- uc3
+p -- uc4
+p -- uc6
+f -- uc7
+f -- uc8
+p -- uc8
+f -- uc9
 
-uc5 --> p : Recebe atendimento
 @enduml
