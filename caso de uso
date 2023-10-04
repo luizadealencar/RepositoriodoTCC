@@ -4,28 +4,28 @@ left to right direction
 
 
 rectangle "Farmácia Cidadã Estadual" {
-actor Paciente as p
-actor Farmacêutico as f
-  usecase "Marcar horário na agenda" as uc1
-  usecase "Registrar Ficha do Paciente" as uc2
-  usecase "Visualizar Ficha do Paciente" as uc3
-  usecase "Receber notificação" as uc4
-  usecase "Abrir Abertura de Processo para Solicitação de Medicamentos" as uc6
-  usecase "Visualizar Abertura de Processo para Solicitação de Medicamentos" as uc7
-usecase "Responder Abertura de Processo para Solicitação de Medicamentos" as uc9
-  usecase "Realizar cadastrar" as uc8
+      actor Paciente as p
+      actor Farmacêutico as f
+      usecase "Realizar cadastro" as uc1
+      usecase "Abrir Abertura de Processo para Solicitação de Medicamentos" as uc2
+      usecase "Visualizar Abertura de Processo para Solicitação de Medicamentos" as uc3
+      usecase "Responder Abertura de Processo para Solicitação de Medicamentos" as uc4
+      usecase "Marcar horário na agenda" as uc5
+      usecase "Receber notificação" as uc6
+      usecase "Registrar Ficha do Paciente" as uc7
+      usecase "Visualizar Ficha do Paciente" as uc8
 }
 
 f -- uc1
-p -- uc1
-f -- uc2
 f -- uc3
-p -- uc3
-p -- uc4
-p -- uc6
+f -- uc4
+f -- uc5
 f -- uc7
 f -- uc8
+p -- uc1
+p -- uc2
+p -- uc5
+p -- uc6
 p -- uc8
-f -- uc9
 
 @enduml
