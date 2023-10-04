@@ -1,17 +1,19 @@
 @startuml
 entity Pessoa {
     -nome: String
+-cpf: String
+-email: Date
+    -dataNasc: Date
+-tel: String
+-senha: String
 }
 
 entity Farmaceutico {
-    -nome: String
+    -crf: String
 }
 
 entity Paciente {
-    -cpf: String
     -numSUS: String
-    -email: Date
-    -dataNasc: Date
     -preferencial: boolean
 }
 
